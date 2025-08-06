@@ -15,7 +15,7 @@ cp .env_template .env
 notepad .env
 ```
 
-After filling .env build project, and you are good to go
+After filling .env - build and install project, and you are good to go
 ```
 uv build
 uv tools install 
