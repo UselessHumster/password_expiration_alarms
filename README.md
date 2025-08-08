@@ -4,7 +4,7 @@ Simple email notifier about AD password expiration
 Working as a script on Windows with AD Tools installed
 
 ## Installation
-First of all - install AD tools, or user this script on a Windows AD Server
+First of all - install AD tools, or use this script on a Windows AD Server
 
 To install you need to clone rep and create .env file and fill it, that's all
 
@@ -15,7 +15,7 @@ cp .env_template .env
 notepad .env
 ```
 
-After filling .env build project, and you are good to go
+After filling .env - build and install project, and you are good to go
 ```
 uv build
 uv tools install 
