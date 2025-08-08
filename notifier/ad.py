@@ -12,7 +12,7 @@ def get_max_pwd_age():
     return int(result.split('.')[0])
 
 
-def get_data():
+def get_users_data():
     cmd = 'get-aduser -searchbase "%s" -filter * -properties * | ' \
           'Select-Object SamAccountName,PasswordLastSet | ' \
           'ConvertTo-Json'

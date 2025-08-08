@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from notifier.ad import max_pwd_age
+from notifier.ad import max_pwd_age, get_users_data
 from notifier.config import DAYS_UNTIL_NOTIFICATION, DOMAIN
 
 
@@ -57,3 +57,14 @@ def is_expired(user):
         return True
     return False
 
+
+def expiring_pwd_only(_user):
+    if not is_pwd_expiring(_user):
+        return False
+    if is_expired(_user):
+        return False
+    return True
+
+
+def get_users_to_notify():
+    return list(filter(expiring_pwd_only, get_users_data()))

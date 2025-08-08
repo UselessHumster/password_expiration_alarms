@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 DOMAIN = os.getenv("domain")
+AD_DOMAIN = os.getenv("ad_domain")
 ALARM_TEMPLATE = open('.\\alarm_template.txt').read()
 MAIL_SENDER = os.getenv("mail_sender")
 EMAIL_USERNAME = MAIL_SENDER

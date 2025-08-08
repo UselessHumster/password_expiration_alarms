@@ -3,7 +3,7 @@ import smtplib
 from email.header import Header
 from email.mime.text import MIMEText
 
-from notifier import generate_alarm_txt
+from notifier.utils import generate_alarm_txt
 from notifier.config import (
     EMAIL_PASSWORD,
     EMAIL_SERVER,
@@ -41,6 +41,14 @@ def send_email(server, user):
         logging.info('Email successfully sent')
 
 
+def prepare_msg(subject, body, email):
+    subject = subject
+    msg = MIMEText(body, 'plain', 'utf-8')
+    msg['Subject'] = Header(subject, 'utf-8')
+    msg['To'] = email
+    return msg
+
+
 def get_mail_msg(user):
     expires_in = get_days_until_expire(user)
     if not expires_in:
@@ -48,7 +56,4 @@ def get_mail_msg(user):
     days_caption = get_correct_ending(expires_in)
     subject = f'Ваш пароль истекает через {expires_in} {days_caption}'
     body = generate_alarm_txt(user)
-    msg = MIMEText(body, 'plain', 'utf-8')
-    msg['Subject'] = Header(subject, 'utf-8')
-    msg['To'] = get_email(user)
-    return msg
+    return prepare_msg(subject, body, get_email(user))
